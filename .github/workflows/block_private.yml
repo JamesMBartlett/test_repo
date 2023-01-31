@@ -1,0 +1,11 @@
+name: block-private
+on:
+  pull_request
+jobs:
+  check-for-private-code:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Check for any private files
+        run: for f in *private*; do [[ "${f}" != ".github/workflows/block_private.yaml" ]] && echo "${f} is private" && exit 100; done
+        shell: bash
