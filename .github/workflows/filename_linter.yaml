@@ -24,6 +24,7 @@ jobs:
           - '**-**'
           private:
           - '**/*private*/**'
+          - '**/*private*'
     - name: Fail on private
       if: ${{ steps.changes.outputs.private == 'true' }}
       run: echo "This repo disallows dirnames or filenames with 'private' in it." && exit 1
