@@ -1,0 +1,17 @@
+name: WaitForJenkinsRun
+on:
+  pull_request:
+jobs:
+  build:
+    name: Wait For Jenkins To Finish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Jenkins Check
+        uses: dflydev/check-runs-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          checks: |
+            [
+              { "id": "jenkins", "name": "Jenkins" }
+            ]
+          status: "queued"
